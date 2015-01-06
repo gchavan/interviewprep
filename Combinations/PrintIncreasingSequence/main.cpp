@@ -9,8 +9,8 @@ void PrintSequence(int* sequence, int len);
 
 int main()
 {
-    int k = 4;
-    int n = 8;
+    int k = 3;
+    int n = 7;
 
     for (int i = 1; i <= (n - k + 1); i++)
     {
@@ -29,7 +29,7 @@ void PrintSequence(int* sequence, int len)
     {
         cout << sequence[i] << " ";
     }
-    cout << endl << endl;
+    cout << endl;
 }
 
 void PrintIncreasingSequence(int start, int k, int n)
