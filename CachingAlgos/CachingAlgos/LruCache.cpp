@@ -21,7 +21,7 @@ void LruCache::Add(int dataToCache)
                 last = last->next;
             }
 
-            cout << "cache is full, hence deleting the least recently used (" << last->data << "). Finally Inserting" ;
+            cout << "cache is full, deleting least recently used (" << last->data << "). ";
             
             auto lastButOne = last->prev;
             lastButOne->next = nullptr;
@@ -29,6 +29,7 @@ void LruCache::Add(int dataToCache)
             mapping->erase(mapping->find(last->data));
         }
 
+        cout << "Inserting";
         m_currCacheSize++;
         m_currCacheSize = m_currCacheSize < m_maxCacheSize ? m_currCacheSize : m_maxCacheSize;
         auto newNode = make_shared<node>(dataToCache);
