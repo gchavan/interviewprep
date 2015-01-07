@@ -8,7 +8,9 @@ int main()
 
     graph.PrintBfs();
 
-    graph.PrintDfs();
+    graph.PrintBuildOrder();
+
+    graph.CheckIfCycle();
 
     cout << endl << "press any key..." << endl;
     cin.get();

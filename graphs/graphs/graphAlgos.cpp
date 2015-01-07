@@ -4,6 +4,8 @@ void Graph::BuildGraph()
 {
     time = 0;
 
+    /*
+    // Check Build Order
     auto undershorts = make_shared<vertex>("undershorts");
     auto pants = make_shared<vertex>("pants");
     auto belt = make_shared<vertex>("belt");
@@ -26,7 +28,6 @@ void Graph::BuildGraph()
 
     undershorts->AddNeighbor(pants, 4);
     undershorts->AddNeighbor(shoes, 2);
-    //  undershorts->AddNeighbor(shirt, 2);
 
     pants->AddNeighbor(belt, 5);
     pants->AddNeighbor(shoes, 10);
@@ -39,18 +40,20 @@ void Graph::BuildGraph()
     tie->AddNeighbor(jacket, 4);
 
     socks->AddNeighbor(shoes, 4);
+    */
 
-    /*auto a = make_shared<vertex>('a');
-    auto b = make_shared<vertex>('b');
-    auto c = make_shared<vertex>('c');
-    auto d = make_shared<vertex>('d');
-    auto e = make_shared<vertex>('e');
-    auto f = make_shared<vertex>('f');
+    auto a = make_shared<vertex>("a");
+    auto b = make_shared<vertex>("b");
+    auto c = make_shared<vertex>("c");
+    auto d = make_shared<vertex>("d");
+    auto e = make_shared<vertex>("e");
+    auto f = make_shared<vertex>("f");
 
     nodes.push_back(a);
     nodes.push_back(b);
     nodes.push_back(c);
     nodes.push_back(d);
+    /*
     nodes.push_back(e);
     nodes.push_back(f);
 
@@ -64,7 +67,19 @@ void Graph::BuildGraph()
 
     d->AddNeighbor(f, 11);
 
-    e->AddNeighbor(d, 4);*/
+    e->AddNeighbor(d, 4);
+    */
+
+    a->AddNeighbor(b, 0);
+    a->AddNeighbor(c, 0);
+
+    // b->AddNeighbor(a, 0);
+    b->AddNeighbor(c, 0);
+
+    // c->AddNeighbor(a, 0);
+    c->AddNeighbor(d, 0);
+
+    d->AddNeighbor(d, 0);
 }
 
 void Graph::ResetVisitedFlag()
@@ -133,7 +148,7 @@ void Graph::Print()
     }
 }
 
-void Graph::PrintDfs()
+void Graph::PrintBuildOrder()
 {
     cout << endl << "Printing Depth First Order..." << endl;
     ResetVisitedFlag();
@@ -142,14 +157,15 @@ void Graph::PrintDfs()
     for each (auto node in nodes)
     {
         if (!node->visited)
-            PrintDfs(node, chain);
+            PrintBuildOrder(node, chain);
     }
     cout << endl;
 
     /*for each (auto node in nodes)
     {
         cout << node->discoverTime << "/" << node->finishTime << " ";
-    }*/
+    }
+    cout << endl;*/
 
     for each (auto node in chain)
     {
@@ -158,9 +174,9 @@ void Graph::PrintDfs()
     cout << endl;
 }
 
-void Graph::PrintDfs(shared_ptr<vertex> node, list<shared_ptr<vertex>>& chain)
+void Graph::PrintBuildOrder(shared_ptr<vertex> node, list<shared_ptr<vertex>>& chain)
 {
-    cout << node->label.c_str() << " ";
+    // cout << node->label.c_str() << " ";
     node->visited = true;
 
     time++;
@@ -170,7 +186,7 @@ void Graph::PrintDfs(shared_ptr<vertex> node, list<shared_ptr<vertex>>& chain)
     {
         if (!i->neighbor->visited)
         {
-            PrintDfs(i->neighbor, chain);
+            PrintBuildOrder(i->neighbor, chain);
         }
     }
 
@@ -178,4 +194,41 @@ void Graph::PrintDfs(shared_ptr<vertex> node, list<shared_ptr<vertex>>& chain)
     node->finishTime = time;
 
     chain.push_front(node);
+}
+
+void Graph::CheckIfCycle()
+{
+    for each (auto node in nodes)
+    {
+        if (CheckIfCycle(node, node))
+        {
+            cout << "There is a cycle." << endl;
+            return;
+        }
+    }
+
+    cout << "There is NO cycle." << endl;
+}
+
+bool Graph::CheckIfCycle(shared_ptr<vertex> begin, shared_ptr<vertex> curr)
+{
+    for each (auto edge in curr->neighbors)
+    {
+        if (edge->neighbor == begin)
+        {
+            return true;
+        }
+
+        if (!edge->neighbor->visited)
+        {
+            edge->neighbor->visited = true;
+            if (CheckIfCycle(begin, edge->neighbor))
+            {
+                return true;
+            }
+            edge->neighbor->visited = false;
+        }
+    }
+
+    return false;
 }

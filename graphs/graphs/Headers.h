@@ -64,8 +64,12 @@ public:
 
     void PrintBfs();
     void PrintBfs(shared_ptr<vertex> node);
-    void PrintDfs();
-    void PrintDfs(shared_ptr<vertex> node, list<shared_ptr<vertex>>& chain);
+
+    void PrintBuildOrder();
+    void PrintBuildOrder(shared_ptr<vertex> node, list<shared_ptr<vertex>>& chain);
+
+    void CheckIfCycle();
+    bool CheckIfCycle(shared_ptr<vertex> begin, shared_ptr<vertex> curr);
 
 private:
     vector<shared_ptr<vertex>> nodes;
