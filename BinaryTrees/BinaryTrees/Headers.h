@@ -20,7 +20,6 @@ struct node
 };
 
 // CRUD operations
-void insert(node** root, int data);
 node* find(node* root, int data);
 void remove(node** root, int data);
 void transplant(node** root, node* oldNode, node* newNode);
