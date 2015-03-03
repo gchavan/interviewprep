@@ -155,21 +155,21 @@ namespace Clustering.UI
 
             visited[currRow, currCol] = true;
 
-            RunClusteringAlgorithm(currRow, currCol, left.row, left.col, path);
-
-            RunClusteringAlgorithm(currRow, currCol, right.row, right.col, path);
+            RunClusteringAlgorithm(currRow, currCol, topLeft.row, topLeft.col, path);
 
             RunClusteringAlgorithm(currRow, currCol, top.row, top.col, path);
 
-            RunClusteringAlgorithm(currRow, currCol, bottom.row, bottom.col, path);
-
-            RunClusteringAlgorithm(currRow, currCol, topLeft.row, topLeft.col, path);
-
             RunClusteringAlgorithm(currRow, currCol, topRight.row, topRight.col, path);
+
+            RunClusteringAlgorithm(currRow, currCol, right.row, right.col, path);
+
+            RunClusteringAlgorithm(currRow, currCol, bottomRight.row, bottomRight.col, path);
+
+            RunClusteringAlgorithm(currRow, currCol, bottom.row, bottom.col, path);
 
             RunClusteringAlgorithm(currRow, currCol, bottomLeft.row, bottomLeft.col, path);
 
-            RunClusteringAlgorithm(currRow, currCol, bottomRight.row, bottomRight.col, path);
+            RunClusteringAlgorithm(currRow, currCol, left.row, left.col, path);
 
             return false;
         }
