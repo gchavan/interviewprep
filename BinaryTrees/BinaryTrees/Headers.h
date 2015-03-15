@@ -23,6 +23,7 @@ struct node
 node* find(node* root, int data);
 void remove(node** root, int data);
 void transplant(node** root, node* oldNode, node* newNode);
+void insert(node** root, int data);
 void deleteNode(node** root, node* nodeToDelete);
 void deleteTree(node** root);
 
