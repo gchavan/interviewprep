@@ -47,10 +47,20 @@ int FindNthNumberUsingRecursion(int n1, int n2, int n)
         return 0;
 
     if (n == 1)
+    {
+        cout << n << " ==> " << n1 << endl;
         return n1;
+    }
 
     if (n == 2)
+    {
+        cout << n << " ==> " << n2 << endl;
         return n2;
+    }
 
-    return (10 * FindNthNumberUsingRecursion(n1, n2, (n - 1) / 2)) + (n % 2 == 0 ? 4 : 3);
+    int value = (10 * FindNthNumberUsingRecursion(n1, n2, (n - 1) / 2)) + (n % 2 == 0 ? n2 : n1);
+
+    cout << n << " ==> " << value << endl;
+
+    return value;
 }
