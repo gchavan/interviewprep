@@ -2,8 +2,8 @@
 
 int main()
 {
-    // int arr[] = { 8, 4, 2, 3, 1, 6, 5, 7, 12, 9, 14, 11, 13, 15 };
-    int arr[] = { 32, 24, 41, 21, 28, 35, 47, 14, 25, 31, 38 };
+    int arr[] = { 8, 4, 2, 3, 1, 6, 5, 7, 12, 9, 14, 11, 13, 15 };
+    // int arr[] = { 32, 24, 41, 21, 28, 35, 47, 14, 25, 31, 38 };
     int size = sizeof(arr) / sizeof(arr[0]);
 
     node* root = nullptr;
@@ -41,9 +41,9 @@ int main()
         cout << temp->data << " ";
     cout << endl;
 
-    /*cout << endl << "Print root to leaf paths..." << endl;
+    cout << endl << "Print root to leaf paths..." << endl;
     vector<node*> nodes;
-    printRootToLeafPaths(root, nodes);*/
+    printRootToLeafPaths(root, nodes);
 
     cout << endl << "Print min and max (binary search tree)..." << endl;
     node* min = minimum(root);

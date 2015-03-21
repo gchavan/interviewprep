@@ -2,8 +2,14 @@
 
 void findRange(node* root, int min, int max, vector<node*>& ranges)
 {
-    if (!root || root->data < min || root->data > max)
+    if (!root)
         return;
+
+    if (root->data < min)
+        return findRange(root->right, min, max, ranges);
+
+    if (root->data > max)
+        return findRange(root->left, min, max, ranges);
 
     findRange(root->left, min, max, ranges);
     ranges.push_back(root);

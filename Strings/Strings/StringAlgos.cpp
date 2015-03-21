@@ -27,9 +27,11 @@ void reverse_string(char* str, int begin, int end)
 void reverse_string_words(char* str)
 {
     int len = strlen(str);
-    int start = 0;
+    int i = 0;
+    while (str[i++] == ' ');
 
-    for (int i = 0; i < len;)
+    int start = i;
+    while (i < len)
     {
         while (str[i] != ' ' && str[i] != '\0')
         {
