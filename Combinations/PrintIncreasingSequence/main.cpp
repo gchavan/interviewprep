@@ -6,6 +6,7 @@ using namespace std;
 
 void PrintIncreasingSequence(int start, int k, int n);
 void PrintSequence(int* sequence, int len);
+void PrintCombinationsToNumber(int n, int currSum, vector<int>& combinations);
 
 int main()
 {
@@ -16,6 +17,11 @@ int main()
     {
         PrintIncreasingSequence(i, k, n);
     }
+
+    n = 4;
+    vector<int> combinations;
+    cout << "Print combinations..." << endl;
+    PrintCombinationsToNumber(n, 0, combinations);
 
     cout << endl << "Press any key to continue..." << endl;
     cin.get();
@@ -50,4 +56,25 @@ void PrintIncreasingSequence(int start, int k, int n)
     }
 
     delete[] sequence;
+}
+
+void PrintCombinationsToNumber(int n, int currSum, vector<int>& combinations)
+{
+    if (n == currSum)
+    {
+        for (auto item : combinations)
+            cout << item << " ";
+        cout << endl;
+        return;
+    }
+
+    for (int i = 1; i <= (n - currSum); i++)
+    {
+        if ((currSum + i) <= n)
+        {
+            combinations.push_back(i);
+            PrintCombinationsToNumber(n, currSum + i, combinations);
+            combinations.pop_back();
+        }
+    }
 }
