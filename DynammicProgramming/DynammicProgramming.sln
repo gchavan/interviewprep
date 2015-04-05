@@ -1,11 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2013 for Windows Desktop
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MaxSubArray", "MaxSubArray\MaxSubArray.vcxproj", "{12E1EC56-8B06-4054-A532-70CC4EDB7E9A}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RodCutting", "RodCutting\RodCutting.vcxproj", "{F569BA81-01F1-4DED-B26F-869720135832}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LongestCommonSubsequence", "LongestCommonSubsequence\LongestCommonSubsequence.vcxproj", "{4FBC9633-0FC2-4020-84F6-9B736024203E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PrintA", "PrintA\PrintA.vcxproj", "{C90ADC78-013F-4488-B1B5-37DD1C25F696}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FindMinCostToReachDestination", "FindMinCostToReachDestination\FindMinCostToReachDestination.vcxproj", "{AF87194C-37E8-4E94-9580-6BB0DE8C2D3A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FindArraySplit", "FindArraySplit\FindArraySplit.vcxproj", "{D2F222F6-EB31-4855-8724-22BF278FCAB5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +29,22 @@ Global
 		{F569BA81-01F1-4DED-B26F-869720135832}.Debug|Win32.Build.0 = Debug|Win32
 		{F569BA81-01F1-4DED-B26F-869720135832}.Release|Win32.ActiveCfg = Release|Win32
 		{F569BA81-01F1-4DED-B26F-869720135832}.Release|Win32.Build.0 = Release|Win32
+		{4FBC9633-0FC2-4020-84F6-9B736024203E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4FBC9633-0FC2-4020-84F6-9B736024203E}.Debug|Win32.Build.0 = Debug|Win32
+		{4FBC9633-0FC2-4020-84F6-9B736024203E}.Release|Win32.ActiveCfg = Release|Win32
+		{4FBC9633-0FC2-4020-84F6-9B736024203E}.Release|Win32.Build.0 = Release|Win32
+		{C90ADC78-013F-4488-B1B5-37DD1C25F696}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C90ADC78-013F-4488-B1B5-37DD1C25F696}.Debug|Win32.Build.0 = Debug|Win32
+		{C90ADC78-013F-4488-B1B5-37DD1C25F696}.Release|Win32.ActiveCfg = Release|Win32
+		{C90ADC78-013F-4488-B1B5-37DD1C25F696}.Release|Win32.Build.0 = Release|Win32
+		{AF87194C-37E8-4E94-9580-6BB0DE8C2D3A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AF87194C-37E8-4E94-9580-6BB0DE8C2D3A}.Debug|Win32.Build.0 = Debug|Win32
+		{AF87194C-37E8-4E94-9580-6BB0DE8C2D3A}.Release|Win32.ActiveCfg = Release|Win32
+		{AF87194C-37E8-4E94-9580-6BB0DE8C2D3A}.Release|Win32.Build.0 = Release|Win32
+		{D2F222F6-EB31-4855-8724-22BF278FCAB5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D2F222F6-EB31-4855-8724-22BF278FCAB5}.Debug|Win32.Build.0 = Debug|Win32
+		{D2F222F6-EB31-4855-8724-22BF278FCAB5}.Release|Win32.ActiveCfg = Release|Win32
+		{D2F222F6-EB31-4855-8724-22BF278FCAB5}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

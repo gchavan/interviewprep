@@ -16,6 +16,7 @@ using namespace std;
 #define MAX(a, b) \
     (a) > (b) ? (a) : (b)
 
+int gSpaceCount = 0;
 
 int MemoizedCutRod(int* prices, int n, map<int, int>& results)
 {
@@ -55,7 +56,7 @@ int CutRod(int* prices, int n)
     for (int i = 0; i < n; i++)
     {
         int prevCutLen = n - i - 1;
-        int prevCut = CutRod(prices, prevCutLen);        
+        int prevCut = CutRod(prices, prevCutLen);
         int newPrice = prices[i] + prevCut;
 
         q = (q > newPrice) ? q : newPrice;
