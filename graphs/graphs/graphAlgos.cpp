@@ -53,7 +53,6 @@ void Graph::BuildGraph()
     nodes.push_back(b);
     nodes.push_back(c);
     nodes.push_back(d);
-    /*
     nodes.push_back(e);
     nodes.push_back(f);
 
@@ -68,18 +67,9 @@ void Graph::BuildGraph()
     d->AddNeighbor(f, 11);
 
     e->AddNeighbor(d, 4);
-    */
 
-    a->AddNeighbor(b, 0);
-    a->AddNeighbor(c, 0);
-
-    // b->AddNeighbor(a, 0);
-    b->AddNeighbor(c, 0);
-
-    // c->AddNeighbor(a, 0);
-    c->AddNeighbor(d, 0);
-
-    d->AddNeighbor(d, 0);
+    source = a;
+    destination = f;
 }
 
 void Graph::ResetVisitedFlag()
@@ -231,4 +221,69 @@ bool Graph::CheckIfCycle(shared_ptr<vertex> begin, shared_ptr<vertex> curr)
     }
 
     return false;
+}
+
+struct classcomp
+{
+    bool operator() (pair<shared_ptr<vertex>, int> lhs, pair<shared_ptr<vertex>, int> rhs) const
+    {
+        return lhs.second > rhs.second;
+    }
+};
+
+void Graph::DijkstrasAlgo()
+{
+    int vertices = nodes.size();
+    map<shared_ptr<vertex>, int> distance;
+    map<shared_ptr<vertex>, shared_ptr<vertex>> previous;
+
+    priority_queue<pair<shared_ptr<vertex>, int>, vector<pair<shared_ptr<vertex>, int>>, classcomp> q;
+
+    for (auto node: nodes)
+    {
+        if (node == source)
+            distance[node] = 0;
+        else
+            distance[node] = INT_MAX;
+
+        previous[node] = nullptr;
+
+        q.push(make_pair(node, distance[node]));
+    }
+
+    while (!q.empty())
+    {
+        auto min = q.top();
+        q.pop();
+
+        auto u = min.first;
+        for (auto neighbor : u->neighbors)
+        {
+            auto v = neighbor->neighbor;
+            int alt = distance[u] + static_cast<int>(neighbor->weight);
+            if (alt < distance[v])
+            {
+                distance[v] = alt;
+                previous[v] = u;
+            }
+        }
+    }
+
+    for (auto node : nodes)
+    {
+        cout << node->label.c_str() << " ==> "
+            << (previous[node] ? previous[node]->label.c_str() : "nullptr") << " , "
+            << distance[node] << endl;
+    }
+
+    auto parent = destination;
+    while (parent)
+    {
+        cout << parent->label.c_str();
+
+        if (previous[parent])
+            cout << " ==> ";
+        parent = previous[parent];
+    }
+    cout << endl;
 }

@@ -3,7 +3,8 @@
 #include <memory>
 #include <queue>
 #include <list>
-
+#include <map>
+#include <set>
 using namespace std;
 
 class vertex;
@@ -71,8 +72,13 @@ public:
     void CheckIfCycle();
     bool CheckIfCycle(shared_ptr<vertex> begin, shared_ptr<vertex> curr);
 
+    void DijkstrasAlgo();
+
 private:
     vector<shared_ptr<vertex>> nodes;
+
+    shared_ptr<vertex> source;
+    shared_ptr<vertex> destination;
 
     int time;
 

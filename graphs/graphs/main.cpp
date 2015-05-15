@@ -8,9 +8,13 @@ int main()
 
     graph.PrintBfs();
 
+    graph.Print();
+
     graph.PrintBuildOrder();
 
     graph.CheckIfCycle();
+
+    graph.DijkstrasAlgo();
 
     cout << endl << "press any key..." << endl;
     cin.get();
