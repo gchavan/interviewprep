@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include <iomanip>
 #include <algorithm>
 #include <map>
@@ -73,18 +74,220 @@ void PrintLongestIncreasingSequence(int* arr, int n)
     cout << "Length of LIS is " << max << endl;
 }
 
+void LongestPalindromicSubstring(char* str)
+{
+    int length = strlen(str);
+    bool** matrix = new bool*[length];
+    for (int i = 0; i < length; i++)
+    {
+        matrix[i] = new bool[length]{};
+        matrix[i][i] = true;
+    }
+
+    int start = 0;
+    int maxLength = 1;
+    for (int i = 0; i < length - 1; i++)
+    {
+        if (str[i] == str[i + 1])
+        {
+            matrix[i][i+1] = true;
+            start = i;
+            maxLength = 2;
+        }
+    }
+
+    for (int k = 3; k <= length; k++)
+    {
+        for (int i = 0; i < length-k+1; i++)
+        {
+            int j = i + k - 1;
+            if (matrix[i + 1][j - 1] && str[i] == str[j])
+            {
+                matrix[i][j] = true;
+                if (k > maxLength)
+                {
+                    start = i;
+                    maxLength = k;
+                }
+            }
+        }
+    }    
+
+    for (int i = 0; i < length; i++)
+        cout << str[i] << " ";
+    cout << endl;
+
+    for (int i = 0; i < length; i++)
+    {
+        for (int j = 0; j < length; j++)
+        {
+            cout << (matrix[i][j] ? "T" : "F") << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
+
+    string newStr = str;
+    cout << "Longes palindromic substring is = " << newStr.substr(start, maxLength).c_str() << endl;
+
+    for (int i = 0; i < length; i++)
+        delete[] matrix[i];
+    delete[] matrix;
+}
+
+void LongestPalindromicSubsequence(char* str)
+{
+    int length = strlen(str);
+    int** matrix = new int*[length];
+    for (int i = 0; i < length; i++)
+    {
+        matrix[i] = new int[length]{};
+        matrix[i][i] = 1;
+    }
+
+    int substrLength = 0;
+    for (substrLength = 2; substrLength <= length; substrLength++)
+    {
+        for (int i = 0; i < (length - substrLength + 1); i++)
+        {
+            int j = i + substrLength - 1;
+            if (str[i] == str[j] && substrLength == 2)
+                matrix[i][j] = 2;
+            else if (str[i] == str[j])
+                matrix[i][j] = matrix[i+1][j-1] + 2;
+            else
+                matrix[i][j] = max(matrix[i][j - 1], matrix[i+1][j]);
+        }
+    }
+
+    for (int i = 0; i < length; i++)
+        cout << str[i] << " ";
+    cout << endl;
+
+    for (int i = 0; i < length; i++)
+    {
+        for (int j = 0; j < length; j++)
+        {
+            cout << matrix[i][j] << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
+
+    cout << "Longest palindromic subsequence length is " << matrix[0][length-1] << endl;
+
+    for (int i = 0; i < length; i++)
+        delete[] matrix[i];
+    delete[] matrix;
+}
+
+void knapsack()
+{
+    cout << "++++++++++++++++++++++++++++" << endl;
+    cout << "+++++++Begin Knapscak+++++++" << endl;
+    cout << "++++++++++++++++++++++++++++" << endl;
+    int totalWeights = 7;
+    vector<int> weights = { 1, 3, 4, 5 };
+    vector<int> values = { 1, 4, 5, 7 };
+    int weightsCount = weights.size() + 1;
+    int** matrix = new int*[weightsCount];
+    for (int i = 0; i < weightsCount; i++)
+        matrix[i] = new int[totalWeights + 1]{};
+
+    for (int i = 1; i < weightsCount; i++)
+    {
+        for (int j = 1; j < totalWeights + 1; j++)
+        {
+            if (j < weights[i - 1])
+                matrix[i][j] = matrix[i - 1][j];
+            else
+                matrix[i][j] = max(matrix[i - 1][j], values[i - 1] + matrix[i - 1][j - weights[i - 1]]);
+        }
+    }
+
+    for (int i = 0; i < weightsCount; i++)
+    {
+        for (int j = 0; j < totalWeights + 1; j++)
+        {
+            cout << matrix[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    cout << "++++++++++++++++++++++++++++" << endl;
+    cout << "++++++++End Knapscak++++++++" << endl;
+    cout << "++++++++++++++++++++++++++++" << endl;
+}
+
+void coinCount()
+{
+    cout << "++++++++++++++++++++++++++++" << endl;
+    cout << "++++++Begin Coin Count++++++" << endl;
+    cout << "++++++++++++++++++++++++++++" << endl;
+
+    int coins[] = { 1, 5, 6, 8 };
+    int coinCount = sizeof(coins) / sizeof(coins[0]);
+    int total = 11;
+    int** matrix = new int*[coinCount + 1];
+    for (int i = 0; i < coinCount; i++)
+        matrix[i] = new int[total + 1]{};
+
+    for (int i = 0; i < total + 1; i++)
+        matrix[0][i] = i;
+
+    for (int i = 1; i < coinCount; i++)
+    {
+        for (int j = 1; j < total + 1; j++)
+        {
+            if (j >= coins[i])
+                matrix[i][j] = min(matrix[i - 1][j], 1 + matrix[i][j - coins[i]]);
+            else
+                matrix[i][j] = matrix[i - 1][j];
+        }
+    }
+
+    for (int i = 0; i < coinCount; i++)
+    {
+        for (int j = 1; j < total + 1; j++)
+        {
+            cout << setfill('0') << setw(2) << matrix[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    for (int i = 0; i < coinCount; i++)
+        delete matrix[i];
+    delete matrix;
+
+    cout << "++++++++++++++++++++++++++++" << endl;
+    cout << "+++++++End Coin Count+++++++" << endl;
+    cout << "++++++++++++++++++++++++++++" << endl;
+}
+
 int main()
 {
-    /*char* str1 = "XMJYAUZ";
-    char* str2 = "MZJAWXU";*/
+    /*
+    char* str1 = "XMJYAUZ";
+    char* str2 = "MZJAWXU";
     char* str1 = "ABCBDAB";
     char* str2 = "BDCABA";
-        
     PrintLongestCommonSubsequence(str1, str2);
+    */
 
-    int arr[] = { 0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15 };
-    // int arr[] = { 10, 22, 9, 33, 21, 50, 41, 60 };
+    knapsack();
+
+    coinCount();
+
+    //int arr[] = { 0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15 };
+    int arr[] = { 10, 22, 9, 33, 21, 50, 41, 60 };
     PrintLongestIncreasingSequence(arr, ARRAY_SIZE(arr));
+
+    cout << endl << "---------Longest palindromic substring---------" << endl;
+    char* str = "forgeeksskeegfor";
+    LongestPalindromicSubstring(str);
+
+    cout << endl << "---------Longest palindromic subsequence---------" << endl;
+    LongestPalindromicSubsequence("EXAMPLEXYELPMAXE");
 
     cout << endl << "Press any key to continue..." << endl;
     cin.get();

@@ -79,6 +79,25 @@ void DeleteList(Node** head)
     *head = nullptr;
 }
 
+void ReverseList(Node** head)
+{
+    if (!(*head))
+        return;
+
+    Node* prev = nullptr;
+    Node* curr = *head;
+    Node* next = nullptr;
+    while (curr)
+    {
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+    }
+
+    *head = prev;
+}
+
 Node* MergeSortedLists(Node* head1, Node* head2)
 {
     if (!head1)

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 #include <map>
 
 using namespace std;
@@ -73,10 +74,7 @@ int BottomUpCutRod(int* prices, int n)
     {
         int q = INT_MIN;
         for (int j = 0; j < i; j++)
-        {
-            int newPrice = prices[j] + results[i - j - 1];
-            q = (q > newPrice) ? q : newPrice;
-        }
+            q = max(q, prices[j] + results[i - j - 1]);
         results[i] = q;
     }
 

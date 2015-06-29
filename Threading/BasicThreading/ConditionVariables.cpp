@@ -57,38 +57,38 @@ struct BoundedBuffer
 
 void consumer(int id, BoundedBuffer& buffer)
 {
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < 10; i++)
     {
         int value = buffer.fetch();
-        cout << "Consumer " << id << " fetched " << value << endl;
+        cout << "Consumer " << id << " consumed " << value << endl;
         this_thread::sleep_for(chrono::milliseconds(250));
     }
 }
 
 void producer(int id, BoundedBuffer& buffer)
 {
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < 10; i++)
     {
-        buffer.deposit(i);
-        cout << "Producer " << id << " deposited " << i << endl;
+        buffer.deposit(i+1);
+        cout << "Producer " << id << " produced " << (i+1) << endl;
         this_thread::sleep_for(chrono::milliseconds(100));
     }
 }
 
 void MultipleProducerConsumer()
 {
-    BoundedBuffer buffer(15);
+    BoundedBuffer buffer(5);
     thread c1(consumer, 1, ref(buffer));
-    thread c2(consumer, 2, ref(buffer));
-    thread c3(consumer, 3, ref(buffer));
+    // thread c2(consumer, 2, ref(buffer));
+    // thread c3(consumer, 3, ref(buffer));
     thread p1(producer, 1, ref(buffer));
-    thread p2(producer, 2, ref(buffer));
-    thread p3(producer, 3, ref(buffer));
+    // thread p2(producer, 2, ref(buffer));
+    // thread p3(producer, 3, ref(buffer));
 
     c1.join();
-    c2.join();
-    c3.join();
+    //c2.join();
+    //c3.join();
     p1.join();
-    p2.join();
-    p3.join();
+    //p2.join();
+    //p3.join();
 }

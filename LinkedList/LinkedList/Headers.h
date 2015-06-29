@@ -22,6 +22,7 @@ void PrintListReverse(Node* head, Node* currNode);
 void DeleteList(Node** head);
 void InsertFront(Node** head, int data);
 void InsertBack(Node** head, int data);
+void ReverseList(Node** head);
 
 Node* MergeSortedLists(Node* head1, Node* head2);
 Node* Add(Node* head1, Node* head2);

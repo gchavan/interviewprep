@@ -17,7 +17,7 @@ int main()
 
     PrintStringPermutationWithoutDuplicates(str, n, output, 0, used);
 
-    cout << endl << "Press any key to continue..." << endl;
+     cout << endl << "Press any key to continue..." << endl;
     cin.get();
 
     return 0;

@@ -19,15 +19,24 @@ void PrintKthLargest(int* arr, int arrSize, int k);
 
 int main()
 {
-    int arr[] = { -2, 1, -3, 4, -1, 2, 5, -4, -6, 8, 12, 11 };
+    int originalArr[] = { 12, 11, 8, 5, 4, 2, 1, -1, -2, -3, -4, -6 };
+    int arr[] = { 12, 11, 8, 5, 4, 2, 1, -1, -2, -3, -4, -6};
     int arrSize = ARRAY_SIZE(arr);
-    int k = 3;
+    int k = 0;
 
     PRINT_ARR(arr);
 
-    PrintKthSmallest(arr, arrSize, k);
+    for (int i = 0; i <= arrSize; i++)
+    {
+        for (int j = 0; j < arrSize; j++)
+            arr[j] = originalArr[j];
+        PrintKthSmallest(arr, arrSize, i + 1);
+    }
 
-    PrintKthLargest(arr, arrSize, k);
+    for (int i = 0; i < arrSize; i++)
+    {
+        PrintKthLargest(arr, arrSize, i + 1);
+    }
 
     cout << endl << "Press any key to continue..." << endl;
     cin.get();
@@ -59,18 +68,19 @@ int Partition(int* arr, int begin, int end, int partionIndex, bool ascending)
     // Swap the partition element with the last element
     Swap(arr[partionIndex], arr[end - 1]);
 
-    int swapIndex = 0;
-    for (int i = 0; i < end - 1; i++)
+    int swapIndex = begin;
+    for (int i = begin; i < end; i++)
     {
         if (ascending && arr[i] < partitionElement)
         {
             Swap(arr[i], arr[swapIndex]);
+            swapIndex++;
         }
         else if (!ascending && arr[i] > partitionElement)
         {
             Swap(arr[i], arr[swapIndex]);
+            swapIndex++;
         }
-        swapIndex++;
     }
 
     Swap(arr[end-1], arr[swapIndex]);
@@ -80,7 +90,7 @@ int Partition(int* arr, int begin, int end, int partionIndex, bool ascending)
 
 void PrintKthSmallest(int* arr, int arrSize, int k)
 {
-    if (k < 0 || k > arrSize)
+    if (k <= 0 || k > arrSize)
     {
         throw exception("Invalid 'k' value.");
     }
@@ -91,17 +101,10 @@ void PrintKthSmallest(int* arr, int arrSize, int k)
     {
         partitionIndex = Partition(arr, begin, end, (begin+end)/2);
 
-#ifdef DEBUG
-        cout << "Partition [" << partitionIndex << "," << arr[partitionIndex] << "] : ";
-        for (int i = 0; i < arrSize; i++)
-            cout << arr[i] << " ";
-        cout << endl;
-#endif
+        begin = partitionIndex > k-1 ? 0 : partitionIndex;
+        end = partitionIndex > k-1 ? partitionIndex : end;
 
-        begin = partitionIndex > k ? 0 : partitionIndex;
-        end = partitionIndex > k ? partitionIndex : arrSize;
-
-    } while (k != partitionIndex);
+    } while (k-1 != partitionIndex);
 
     cout << endl << k << "'th smallest element is " << arr[k-1] << endl;    
 }
@@ -119,17 +122,10 @@ void PrintKthLargest(int* arr, int arrSize, int k)
     {
         partitionIndex = Partition(arr, begin, end, (begin + end) / 2, false);
 
-#ifdef DEBUG
-        cout << "Partition [" << partitionIndex << "," << arr[partitionIndex] << "] : ";
-        for (int i = 0; i < arrSize; i++)
-            cout << arr[i] << " ";
-        cout << endl;
-#endif
+        begin = partitionIndex > k-1 ? 0 : partitionIndex;
+        end = partitionIndex > k-1 ? partitionIndex : end;
 
-        begin = partitionIndex > k ? 0 : partitionIndex;
-        end = partitionIndex > k ? partitionIndex : arrSize;
-
-    } while (k != partitionIndex);
+    } while (k-1 != partitionIndex);
 
     cout << endl << k << "'th largest element is " << arr[k - 1] << endl;
 }

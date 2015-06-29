@@ -9,7 +9,7 @@ void RBTree::Delete(int data)
         cout << "Couldn't find " << data << " in the Red-Black Tree." << endl;
     }
 
-    RBDelete(z);
+    // RBDelete(z);
 }
 
 shared_ptr<RBTree::RBTreeNode> RBTree::RBSearch(int data)

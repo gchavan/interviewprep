@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2013 for Windows Desktop
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PathsToStepN", "PathsToStepN\PathsToStepN.vcxproj", "{79F06347-548C-4B65-BC36-77509B68D402}"
 EndProject
@@ -10,6 +10,10 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StringPermutations", "StringPermutations\StringPermutations.vcxproj", "{1B9DA621-449F-4377-B491-D9D2AD551733}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClosingParanthesis", "ClosingParanthesis\ClosingParanthesis.vcxproj", "{437D68D2-A858-42E4-8A25-5BBE7B4F6C47}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Grid", "Grid\Grid.vcxproj", "{9DFB6B92-88DF-42B2-A8AD-93F838EC5D49}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WordsInMatrix", "WordsInMatrix\WordsInMatrix.vcxproj", "{1DDC25F1-8413-4250-8F65-6EA7E055E51F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{437D68D2-A858-42E4-8A25-5BBE7B4F6C47}.Debug|Win32.Build.0 = Debug|Win32
 		{437D68D2-A858-42E4-8A25-5BBE7B4F6C47}.Release|Win32.ActiveCfg = Release|Win32
 		{437D68D2-A858-42E4-8A25-5BBE7B4F6C47}.Release|Win32.Build.0 = Release|Win32
+		{9DFB6B92-88DF-42B2-A8AD-93F838EC5D49}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9DFB6B92-88DF-42B2-A8AD-93F838EC5D49}.Debug|Win32.Build.0 = Debug|Win32
+		{9DFB6B92-88DF-42B2-A8AD-93F838EC5D49}.Release|Win32.ActiveCfg = Release|Win32
+		{9DFB6B92-88DF-42B2-A8AD-93F838EC5D49}.Release|Win32.Build.0 = Release|Win32
+		{1DDC25F1-8413-4250-8F65-6EA7E055E51F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1DDC25F1-8413-4250-8F65-6EA7E055E51F}.Debug|Win32.Build.0 = Debug|Win32
+		{1DDC25F1-8413-4250-8F65-6EA7E055E51F}.Release|Win32.ActiveCfg = Release|Win32
+		{1DDC25F1-8413-4250-8F65-6EA7E055E51F}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

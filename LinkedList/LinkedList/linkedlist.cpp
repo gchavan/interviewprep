@@ -7,7 +7,7 @@ int main()
 {
     DoBasicOperations();
 
-    MergeSortedLists();
+    // MergeSortedLists();
 
     cout << endl << "Press any key to continue..." << endl;
     cin.get();
@@ -31,10 +31,17 @@ void DoBasicOperations()
     InsertFront(&head, 1);
     PrintList(head);
 
-    // Print list in reverse order
+    cout << endl << "Print list in reverse order..." << endl;
     PrintListReverse(head, head);
     cout << endl;
 
+    cout << endl << "Reversing list..." << endl;
+    ReverseList(&head);
+
+    cout << endl << "Print list after reversing..." << endl;
+    PrintList(head);
+
+    cout << endl << "Deleting list..." << endl;
     DeleteList(&head);
 
     PrintList(head);

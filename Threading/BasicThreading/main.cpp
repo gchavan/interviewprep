@@ -11,13 +11,13 @@ void hello()
 
 int main()
 {
-    StartingSingleThread();
+    /*StartingSingleThread();
     StartingMultipleThread();
     StartingMultipleThreadsViaLambda();
 
     IncrementCounterNoMutex();
     IncrementCounterConcurrentlyUnsafe();
-    IncrementCounterConcurrentlySafe();
+    IncrementCounterConcurrentlySafe();*/
 
     MultipleProducerConsumer();
 
